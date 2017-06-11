@@ -1,0 +1,101 @@
+# PizzaOrderingSystem2
+
+package com.koniu98.pizzasystemextra;
+
+
+public class PizzaExtra 
+{
+
+	private String name;
+	
+	private double smallPrice;
+	private double bigPrice;
+	
+	private int cookingTime;
+	
+	private int smallSize;
+	private int bigSize;
+	
+	public PizzaExtra(String name, double smallPrice, double bigPrice, int cookingTime, int smallSize, int bigSize) {
+		this.name = name;
+		this.smallPrice = smallPrice;
+		this.bigPrice = bigPrice;
+		this.cookingTime = cookingTime;
+		this.smallSize = smallSize;
+		this.bigSize = bigSize;
+	}
+
+
+	public String getName()
+	{
+		return name;
+	}
+
+
+	public void setName(String name)
+	{
+		this.name = name;
+	}
+
+
+	public double getSmallPrice()
+	{
+		return smallPrice;
+	}
+
+
+	public void setSmallPrice(double smallPrice)
+	{
+		this.smallPrice = smallPrice;
+	}
+	
+
+
+	public double getBigPrice()
+	{
+		return bigPrice;
+	}
+
+
+	public void setBigPrice(double bigPrice)
+	{
+		this.bigPrice = bigPrice;
+	}
+
+
+	public double getCookingTime()
+	{
+		return cookingTime;
+	}
+
+
+	public void setCookingTime(int cookingTime)
+	{
+		this.cookingTime = cookingTime;
+	}
+
+
+	public int getSmallSize()
+	{
+		return smallSize;
+	}
+
+
+	public void setSmallSize(int smallSize)
+	{
+		this.smallSize = smallSize;
+	}
+
+
+	public int getBigSize()
+	{
+		return bigSize;
+	}
+
+
+	public void setBigSize(int bigSize)
+	{
+		this.bigSize = bigSize;
+	}
+	
+}
