@@ -8,13 +8,11 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
-public class AppExtra
+public class WithAdditions
 {
 
 	public static void main(String[] args)
 	{
-		
-		
 		Map<String, Double> dodatki= new LinkedHashMap<String, Double>();
 		
 		dodatki.put("ketchup", 1.50);
