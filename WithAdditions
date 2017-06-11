@@ -1,0 +1,215 @@
+# PizzaOrderingSystem2
+
+package com.koniu98.pizzasystemextra;
+
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
+
+public class AppExtra
+{
+
+	public static void main(String[] args)
+	{
+		
+		
+		Map<String, Double> dodatki= new LinkedHashMap<String, Double>();
+		
+		dodatki.put("ketchup", 1.50);
+		dodatki.put("garlicSos", 1.50);
+		dodatki.put("tomatoes", 2.0);
+		dodatki.put("onions", 2.0);
+		dodatki.put("mushrooms", 2.0);
+		dodatki.put("pepers", 2.0);
+		dodatki.put("cheese", 2.0);
+		dodatki.put("sosuage", 3.0);
+		dodatki.put("chicken", 3.0);
+		dodatki.put("salami", 3.0);
+		
+		int margS , praS, verS;
+		margS=praS=verS=0;
+		
+		int margB, praB, verB;
+		margB=praB=verB=0;
+		
+		
+		PizzaExtra margerita = new PizzaExtra ( "1. Margerita", 9.50, 13.50, 15, 10, 15);
+		PizzaExtra prataiolo = new PizzaExtra ("2. Prataiolo", 10.0, 14.50, 15, 10, 15);
+		PizzaExtra verona = new PizzaExtra ("3. Verona", 11.0, 15.0, 15, 10, 15);
+
+		
+		Set<PizzaExtra> avaiblePizzas = new LinkedHashSet<PizzaExtra>();
+
+		avaiblePizzas.add(margerita);
+		avaiblePizzas.add(prataiolo);
+		avaiblePizzas.add(verona);
+		
+		
+		System.out.println("Avaible pizzas: ");
+		for (PizzaExtra pizza : avaiblePizzas)
+		{
+			System.out.println(pizza.getName());
+			System.out.println("Small: " + "Price: " + pizza.getSmallPrice() + "$ , Size:" + pizza.getSmallSize() + "cm, Cooking time: " + pizza.getCookingTime());
+			System.out.println("Big: " + "Price: " + pizza.getBigPrice() + "$ , Size:" + pizza.getBigSize() + "cm, Cooking time: " + pizza.getCookingTime());
+			System.out.println();
+		}
+
+		System.out.println("Put a pizza's numbers which you want to order and to choose size enter: \"B\" for big or \"S\" for small: ");
+		System.out.println("Enter: \"q\" to stop ordering.");
+
+		Scanner input = new Scanner(System.in);
+	
+
+		while(input.hasNextInt()){
+			int choosenType = input.nextInt();
+			char choosenSize= input.next().charAt(0);
+		switch (choosenType)
+		{
+		case 1:
+			if(choosenSize=='S'){
+			margS++;
+			}
+			if(choosenSize=='B'){
+			margB++;}
+			break;
+		case 2:
+			if(choosenSize=='S'){
+		praS++;}
+			if(choosenSize=='B'){
+				praB++;
+			}
+			break;
+		case 3:
+			if(choosenSize=='S'){
+		verS++;}
+			if(choosenSize=='B'){
+				verB++;
+			}
+			break;
+		}
+		}
+	
+		Scanner in= new Scanner(System.in);
+		System.out.println("Do you want extra dodatek? Enter: \"YES\" or \"NO\": ");
+		String choiceExtra= in.nextLine();
+		switch(choiceExtra){
+		case "YES":
+			System.out.println("Avaible extra dodatki: ");
+			for(Map.Entry<String, Double> entry: dodatki.entrySet()){
+				String key= entry.getKey();
+				double value= entry.getValue();
+					System.out.println( "- " + key + ": " + value + " $,");
+			}
+			
+			System.out.println("Enter which extra do you want \"UNMEAT\", \"MEAT\" or \"SOS\": ");
+			System.out.println("Enter: \"e\" to stop ordering.");
+			
+			double priceMeat, priceSoses, priceUnmeat;
+			priceMeat=priceSoses=priceUnmeat=0;
+			
+			// CHOOSING NUMBER OF EXTRA
+			while(in.hasNextLine()){
+				String choosenExtra= in.nextLine();
+			
+			switch (choosenExtra)
+			{
+			case "UNMEAT":
+				System.out.println("How many: ");
+				int unmeatNum= in.nextInt();
+				priceUnmeat= unmeatNum * 2.0;
+				break;
+			case "MEAT":
+				System.out.println("How many: ");
+				int meatNum= in.nextInt();
+					priceMeat= meatNum * 3.0;
+				break;
+			case "SOS":
+				System.out.println("How many: ");
+				int sosesNum= in.nextInt();
+					priceSoses= sosesNum * 1.50;
+				break;
+			case "e":
+				if(priceMeat!=0 || priceSoses!=0 || priceUnmeat!=0){
+					double totalExtraPrice= priceMeat + priceSoses + priceUnmeat;
+
+					// NUMBER OREDERD PIZZAS
+					if(margS!=0){
+					System.out.println("Number ordered  samll margeritas: " + margS);
+					}
+					if(margB!=0){
+						System.out.println("Number ordered big margeritas: " + margB);
+					}
+					if(praS!=0){
+						System.out.println("Number ordered small prataiolos: " + praS);
+					}
+					if(praB!=0){
+						System.out.println("Number ordered big prataiolos: " + praB);
+					}
+					if(verS!=0){
+						System.out.println("Number ordered small veronas: " + verS);
+					}
+					if(verB!=0){
+						System.out.println("Number ordered big veronas: " + verB);
+					}
+					
+					int numMarg= margS + margB;
+					int numPra= praS + praB;
+					int numVer= verS + verB;
+					
+					// WATING TIME
+					double waitingTime= numMarg* margerita.getCookingTime() + numPra* prataiolo.getCookingTime() + numVer* verona.getCookingTime(); 
+					System.out.println("Wating time: " + waitingTime + " minutes.");
+					
+					
+					double billWithoutExtra= margS* margerita.getSmallPrice() + praS* prataiolo.getSmallPrice() + verS* verona.getSmallPrice() + margB* margerita.getBigPrice() + praB * prataiolo.getBigPrice() + verB * verona.getBigPrice();
+					double billWithExtra= billWithoutExtra + totalExtraPrice;
+					System.out.println("You have to pay: " + billWithExtra + " $.");
+					
+				}
+				
+			}
+			}
+		break;	
+		
+		case "NO": 
+			double billWithoutExtra= margS* margerita.getSmallPrice() + praS* prataiolo.getSmallPrice() + verS* verona.getSmallPrice() + margB* margerita.getBigPrice() + praB * prataiolo.getBigPrice() + verB * verona.getBigPrice();
+			System.out.println("You have to pay: " + billWithoutExtra + " $.");
+			
+			// NUMBER ORDERED PIZZAS
+			if(margS!=0){
+			System.out.println("Number ordered  samll margeritas: " + margS);
+			}
+			if(margB!=0){
+				System.out.println("Number ordered big margeritas: " + margB);
+			}
+			if(praS!=0){
+				System.out.println("Number ordered small prataiolos: " + praS);
+			}
+			if(praB!=0){
+				System.out.println("Number ordered big prataiolos: " + praB);
+			}
+			if(verS!=0){
+				System.out.println("Number ordered small veronas: " + verS);
+			}
+			if(verB!=0){
+				System.out.println("Number ordered big veronas: " + verB);
+			}
+			
+			int numMarg= margS + margB;
+			int numPra= praS + praB;
+			int numVer= verS + verB;
+			
+			// WATING TIME
+			double waitingTime= numMarg* margerita.getCookingTime() + numPra* prataiolo.getCookingTime() + numVer* verona.getCookingTime(); 
+			System.out.println("Wating time: " + waitingTime + " minutes.");
+		break;
+	
+		
+		}
+			
+
+
+}
+}
