@@ -1,0 +1,114 @@
+# PizzaOrderingSystem2
+
+package com.koniu98.pizzasystem;
+
+import java.util.LinkedHashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class App
+{
+
+	public static void main(String[] args)
+	{
+		int margS , praS, verS;
+		margS=praS=verS=0;
+		
+		int margB, praB, verB;
+		margB=praB=verB=0;
+		
+		
+		Pizza margerita = new Pizza("1. Margerita", 9.50, 13.50, 15, 10, 15);
+		Pizza prataiolo = new Pizza("2. Prataiolo", 10.0, 14.50, 15, 10, 15);
+		Pizza verona = new Pizza("3. Verona", 11.0, 15.0, 15, 10, 15);
+
+		
+		Set<Pizza> avaiblePizzas = new LinkedHashSet<Pizza>();
+
+		avaiblePizzas.add(margerita);
+		avaiblePizzas.add(prataiolo);
+		avaiblePizzas.add(verona);
+		
+		
+		System.out.println("Avaible pizzas: ");
+		for (Pizza pizza : avaiblePizzas)
+		{
+			System.out.println(pizza.getName());
+			System.out.println("Small: " + "Price: " + pizza.getSmallPrice() + "$ , Size:" + pizza.getSmallSize() + "cm, Cooking time: " + pizza.getCookingTime());
+			System.out.println("Big: " + "Price: " + pizza.getBigPrice() + "$ , Size:" + pizza.getBigSize() + "cm, Cooking time: " + pizza.getCookingTime());
+			System.out.println();
+		}
+
+		System.out.println("Put a pizza's numbers which you want to order and to choose size enter: \"B\" for big or \"S\" for small: ");
+		System.out.println("Enter: \"q\" to stop ordering.");
+
+		Scanner input = new Scanner(System.in);
+	
+
+		while(input.hasNextInt()){
+			int choosenType = input.nextInt();
+			char choosenSize= input.next().charAt(0);
+		switch (choosenType)
+		{
+		case 1:
+			if(choosenSize=='S'){
+			margS++;
+			}
+			if(choosenSize=='B'){
+			margB++;}
+			break;
+		case 2:
+			if(choosenSize=='S'){
+		praS++;}
+			if(choosenSize=='B'){
+				praB++;
+			}
+			break;
+		case 3:
+			if(choosenSize=='S'){
+		verS++;}
+			if(choosenSize=='B'){
+				verB++;
+			}
+			break;
+		}
+		}
+		
+		if(margS!=0){
+		System.out.println("Number ordered  samll margeritas: " + margS);
+		}
+		if(margB!=0){
+			System.out.println("Number ordered big margeritas: " + margB);
+		}
+		if(praS!=0){
+			System.out.println("Number ordered small prataiolos: " + praS);
+		}
+		if(praB!=0){
+			System.out.println("Number ordered big prataiolos: " + praB);
+		}
+		if(verS!=0){
+			System.out.println("Number ordered small veronas: " + verS);
+		}
+		if(verB!=0){
+			System.out.println("Number ordered big veronas: " + verB);
+		}
+		
+		// BILL
+		double bill= margS* margerita.getSmallPrice() + praS* prataiolo.getSmallPrice() + verS* verona.getSmallPrice() + margB*   
+    margerita.getBigPrice() + praB * prataiolo.getBigPrice() + verB * verona.getBigPrice();
+			System.out.println("You have to pay: " + bill + " $.");
+	
+		
+		int numMarg= margS + margB;
+		int numPra= praS + praB;
+		int numVer= verS + verB;
+    
+		// WATING TIME
+		double waitingTime= numMarg* margerita.getCookingTime() + numPra* prataiolo.getCookingTime() + numVer* verona.getCookingTime(); 
+		System.out.println("Wating time: " + waitingTime + " minutes.");
+		
+	}
+
+
+	}
+
