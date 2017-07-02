@@ -140,24 +140,24 @@ public class AppExtra extends PizzaExtra
 				if(priceMeat!=0 || priceSoses!=0 || priceVege!=0){
 					double totalToppingsPrice= priceMeat + priceSoses + priceVege;
 
-					// NUMBER OREDERD PIZZAS
+					// THE NUMBER OF ORDERED PIZZAS
 					if(margS!=0){
-					System.out.println("Number ordered  small margeritas: " + margS);
+					System.out.println("The number of small margeritas ordered: " + margS);
 					}
 					if(margB!=0){
-						System.out.println("Number ordered big margeritas: " + margB);
+						System.out.println("The number of big margeritas ordered: " + margB);
 					}
 					if(praS!=0){
-						System.out.println("Number ordered small prataiolos: " + praS);
+						System.out.println("The number of small prataiolos ordered: " + praS);
 					}
 					if(praB!=0){
-						System.out.println("Number ordered big prataiolos: " + praB);
+						System.out.println("The number of big prataiolos ordered: " + praB);
 					}
 					if(verS!=0){
-						System.out.println("Number ordered small veronas: " + verS);
+						System.out.println("The number of small veronas ordered: " + verS);
 					}
 					if(verB!=0){
-						System.out.println("Number ordered big veronas: " + verB);
+						System.out.println("The number of big veronas ordered: " + verB);
 					}
 					
 					int numMarg= margS + margB;
