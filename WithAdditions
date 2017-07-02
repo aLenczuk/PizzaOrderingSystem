@@ -8,23 +8,29 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
-public class WithAdditions
+public class AppExtra extends PizzaExtra
 {
+
+	public AppExtra(String name, double smallPrice, double bigPrice, int cookingTime, int smallSize, int bigSize) {
+		super(name, smallPrice, bigPrice, cookingTime, smallSize, bigSize);
+	}
 
 	public static void main(String[] args)
 	{
-		Map<String, Double> dodatki= new LinkedHashMap<String, Double>();
 		
-		dodatki.put("ketchup", 1.50);
-		dodatki.put("garlicSos", 1.50);
-		dodatki.put("tomatoes", 2.0);
-		dodatki.put("onions", 2.0);
-		dodatki.put("mushrooms", 2.0);
-		dodatki.put("pepers", 2.0);
-		dodatki.put("cheese", 2.0);
-		dodatki.put("sosuage", 3.0);
-		dodatki.put("chicken", 3.0);
-		dodatki.put("salami", 3.0);
+		
+		Map<String, Double> toppings= new LinkedHashMap<String, Double>();
+		
+		toppings.put("ketchup", 1.50);
+		toppings.put("garlicSos", 1.50);
+		toppings.put("tomatoes", 2.0);
+		toppings.put("onions", 2.0);
+		toppings.put("mushrooms", 2.0);
+		toppings.put("pepers", 2.0);
+		toppings.put("cheese", 2.0);
+		toppings.put("sausage", 3.0);
+		toppings.put("chicken", 3.0);
+		toppings.put("salami", 3.0);
 		
 		int margS , praS, verS;
 		margS=praS=verS=0;
@@ -38,15 +44,15 @@ public class WithAdditions
 		PizzaExtra verona = new PizzaExtra ("3. Verona", 11.0, 15.0, 15, 10, 15);
 
 		
-		Set<PizzaExtra> avaiblePizzas = new LinkedHashSet<PizzaExtra>();
+		Set<PizzaExtra> availablePizzas = new LinkedHashSet<PizzaExtra>();
 
-		avaiblePizzas.add(margerita);
-		avaiblePizzas.add(prataiolo);
-		avaiblePizzas.add(verona);
+		availablePizzas.add(margerita);
+		availablePizzas.add(prataiolo);
+		availablePizzas.add(verona);
 		
 		
-		System.out.println("Avaible pizzas: ");
-		for (PizzaExtra pizza : avaiblePizzas)
+		System.out.println("Available pizzas: ");
+		for (PizzaExtra pizza : availablePizzas)
 		{
 			System.out.println(pizza.getName());
 			System.out.println("Small: " + "Price: " + pizza.getSmallPrice() + "$ , Size:" + pizza.getSmallSize() + "cm, Cooking time: " + pizza.getCookingTime());
@@ -89,34 +95,36 @@ public class WithAdditions
 		}
 		}
 	
+		
+		
 		Scanner in= new Scanner(System.in);
-		System.out.println("Do you want extra dodatek? Enter: \"YES\" or \"NO\": ");
-		String choiceExtra= in.nextLine();
-		switch(choiceExtra){
+		System.out.println("Do you want toppings? Enter: \"YES\" or \"NO\": ");
+		String choiceToppings= in.nextLine();
+		switch(choiceToppings){
 		case "YES":
-			System.out.println("Avaible extra dodatki: ");
-			for(Map.Entry<String, Double> entry: dodatki.entrySet()){
+			System.out.println("Available toppings: ");
+			for(Map.Entry<String, Double> entry: toppings.entrySet()){
 				String key= entry.getKey();
 				double value= entry.getValue();
 					System.out.println( "- " + key + ": " + value + " $,");
 			}
 			
-			System.out.println("Enter which extra do you want \"UNMEAT\", \"MEAT\" or \"SOS\": ");
+			System.out.println("Enter which toppings do you want \"VEGETARIAN\", \"MEAT\" or \"SOS\": ");
 			System.out.println("Enter: \"e\" to stop ordering.");
 			
-			double priceMeat, priceSoses, priceUnmeat;
-			priceMeat=priceSoses=priceUnmeat=0;
+			double priceMeat, priceSoses, priceVege;
+			priceMeat=priceSoses=priceVege=0;
 			
-			// CHOOSING NUMBER OF EXTRA
+			// CHOOSING NUMBER OF TOPPINGS
 			while(in.hasNextLine()){
-				String choosenExtra= in.nextLine();
+				String choosenToppings= in.nextLine();
 			
-			switch (choosenExtra)
+			switch (choosenToppings)
 			{
-			case "UNMEAT":
+			case "VEGETARIAN":
 				System.out.println("How many: ");
-				int unmeatNum= in.nextInt();
-				priceUnmeat= unmeatNum * 2.0;
+				int vegeNum= in.nextInt();
+				priceVege= vegeNum * 2.0;
 				break;
 			case "MEAT":
 				System.out.println("How many: ");
@@ -129,12 +137,12 @@ public class WithAdditions
 					priceSoses= sosesNum * 1.50;
 				break;
 			case "e":
-				if(priceMeat!=0 || priceSoses!=0 || priceUnmeat!=0){
-					double totalExtraPrice= priceMeat + priceSoses + priceUnmeat;
+				if(priceMeat!=0 || priceSoses!=0 || priceVege!=0){
+					double totalToppingsPrice= priceMeat + priceSoses + priceVege;
 
 					// NUMBER OREDERD PIZZAS
 					if(margS!=0){
-					System.out.println("Number ordered  samll margeritas: " + margS);
+					System.out.println("Number ordered  small margeritas: " + margS);
 					}
 					if(margB!=0){
 						System.out.println("Number ordered big margeritas: " + margB);
@@ -156,14 +164,14 @@ public class WithAdditions
 					int numPra= praS + praB;
 					int numVer= verS + verB;
 					
-					// WATING TIME
+					// WAITING TIME
 					double waitingTime= numMarg* margerita.getCookingTime() + numPra* prataiolo.getCookingTime() + numVer* verona.getCookingTime(); 
-					System.out.println("Wating time: " + waitingTime + " minutes.");
+					System.out.println("Waiting time: " + waitingTime + " minutes.");
 					
 					
-					double billWithoutExtra= margS* margerita.getSmallPrice() + praS* prataiolo.getSmallPrice() + verS* verona.getSmallPrice() + margB* margerita.getBigPrice() + praB * prataiolo.getBigPrice() + verB * verona.getBigPrice();
-					double billWithExtra= billWithoutExtra + totalExtraPrice;
-					System.out.println("You have to pay: " + billWithExtra + " $.");
+					double billWithoutToppings= margS* margerita.getSmallPrice() + praS* prataiolo.getSmallPrice() + verS* verona.getSmallPrice() + margB* margerita.getBigPrice() + praB * prataiolo.getBigPrice() + verB * verona.getBigPrice();
+					double billWithToppings= billWithoutToppings + totalToppingsPrice;
+					System.out.println("You have to pay: " + billWithToppings + " $.");
 					
 				}
 				
@@ -175,9 +183,9 @@ public class WithAdditions
 			double billWithoutExtra= margS* margerita.getSmallPrice() + praS* prataiolo.getSmallPrice() + verS* verona.getSmallPrice() + margB* margerita.getBigPrice() + praB * prataiolo.getBigPrice() + verB * verona.getBigPrice();
 			System.out.println("You have to pay: " + billWithoutExtra + " $.");
 			
-			// NUMBER ORDERED PIZZAS
+			// NUMBER OF ORDERED PIZZAS
 			if(margS!=0){
-			System.out.println("Number ordered  samll margeritas: " + margS);
+			System.out.println("Number ordered  small margeritas: " + margS);
 			}
 			if(margB!=0){
 				System.out.println("Number ordered big margeritas: " + margB);
@@ -199,15 +207,13 @@ public class WithAdditions
 			int numPra= praS + praB;
 			int numVer= verS + verB;
 			
-			// WATING TIME
+			// WAITING TIME
 			double waitingTime= numMarg* margerita.getCookingTime() + numPra* prataiolo.getCookingTime() + numVer* verona.getCookingTime(); 
-			System.out.println("Wating time: " + waitingTime + " minutes.");
+			System.out.println("Waiting time: " + waitingTime + " minutes.");
 		break;
 	
 		
 		}
-			
 
-
-}
+	}
 }
