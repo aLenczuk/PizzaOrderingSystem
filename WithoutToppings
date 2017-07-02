@@ -6,8 +6,12 @@ import java.util.LinkedHashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-public class WithoutAdditions
+public class App extends Pizza
 {
+
+	public App(String name, double smallPrice, double bigPrice, int cookingTime, int smallSize, int bigSize) {
+		super(name, smallPrice, bigPrice, cookingTime, smallSize, bigSize);
+	}
 
 	public static void main(String[] args)
 	{
@@ -23,15 +27,15 @@ public class WithoutAdditions
 		Pizza verona = new Pizza("3. Verona", 11.0, 15.0, 15, 10, 15);
 
 		
-		Set<Pizza> avaiblePizzas = new LinkedHashSet<Pizza>();
+		Set<Pizza> availablePizzas = new LinkedHashSet<Pizza>();
 
-		avaiblePizzas.add(margerita);
-		avaiblePizzas.add(prataiolo);
-		avaiblePizzas.add(verona);
+		availablePizzas.add(margerita);
+		availablePizzas.add(prataiolo);
+		availablePizzas.add(verona);
 		
 		
-		System.out.println("Avaible pizzas: ");
-		for (Pizza pizza : avaiblePizzas)
+		System.out.println("Available pizzas: ");
+		for (Pizza pizza : availablePizzas)
 		{
 			System.out.println(pizza.getName());
 			System.out.println("Small: " + "Price: " + pizza.getSmallPrice() + "$ , Size:" + pizza.getSmallSize() + "cm, Cooking time: " + pizza.getCookingTime());
@@ -75,40 +79,39 @@ public class WithoutAdditions
 		}
 		
 		if(margS!=0){
-		System.out.println("Number ordered  samll margeritas: " + margS);
+		System.out.println("The number of small margeritas ordered: " + margS);
 		}
 		if(margB!=0){
-			System.out.println("Number ordered big margeritas: " + margB);
+			System.out.println("The number of big margeritas ordered: " + margB);
 		}
 		if(praS!=0){
-			System.out.println("Number ordered small prataiolos: " + praS);
+			System.out.println("The number of small prataiolos ordered: " + praS);
 		}
 		if(praB!=0){
-			System.out.println("Number ordered big prataiolos: " + praB);
+			System.out.println("The number of big prataiolos ordered: " + praB);
 		}
 		if(verS!=0){
-			System.out.println("Number ordered small veronas: " + verS);
+			System.out.println("The number of small veronas ordered: " + verS);
 		}
 		if(verB!=0){
-			System.out.println("Number ordered big veronas: " + verB);
+			System.out.println("The number of big veronas ordered: " + verB);
 		}
 		
 		// BILL
-		double bill= margS* margerita.getSmallPrice() + praS* prataiolo.getSmallPrice() + verS* verona.getSmallPrice() + margB*   
-    margerita.getBigPrice() + praB * prataiolo.getBigPrice() + verB * verona.getBigPrice();
-			System.out.println("You have to pay: " + bill + " $.");
+		double bill= margS* margerita.getSmallPrice() + praS* prataiolo.getSmallPrice() + verS* verona.getSmallPrice() + margB* margerita.getBigPrice() + praB * prataiolo.getBigPrice() + verB * verona.getBigPrice();
+		System.out.println("You have to pay: " + bill + " $.");
 	
 		
 		int numMarg= margS + margB;
 		int numPra= praS + praB;
 		int numVer= verS + verB;
-    
-		// WATING TIME
+		// WAITING TIME
 		double waitingTime= numMarg* margerita.getCookingTime() + numPra* prataiolo.getCookingTime() + numVer* verona.getCookingTime(); 
-		System.out.println("Wating time: " + waitingTime + " minutes.");
+		System.out.println("Waiting time: " + waitingTime + " minutes.");
 		
 	}
 
 
 	}
+
 
